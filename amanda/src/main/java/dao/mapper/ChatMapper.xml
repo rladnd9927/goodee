@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="dao.mapper.ChatMapper">
+   <select id="listadd" parameterType="map" resultType="Chat">
+      INSERT INTO CHAT (c_number) values(#{m_like})
+   </select>
+   
+   
+     <select id="content" parameterType="map" resultType="Chat">
+         SELECT c_subject FROM CHAT WHERE c_number = #{c_number}
+      </select> 
+         
+     <update id="send" parameterType="map">
+      UPDATE CHAT
+         SET c_subject = c_subject||'&lt;br&gt;${ms}'
+       WHERE c_number = #{num}
+   </update>
+   
+   <delete id="chatdelete1" parameterType="int">
+      DELETE FROM CHAT WHERE C_number=${value} 
+   </delete>
+   
+   <delete id="chatdelete2" parameterType="int"> 
+      DELETE FROM CHAT WHERE C_number=${value}
+   </delete>
+      
+</mapper>

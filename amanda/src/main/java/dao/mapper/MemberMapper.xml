@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="dao.mapper.MemberMapper">
+      <select id="mypage" parameterType="map" resultType="Member">
+         SELECT Y_number, C_number, ser, M_like FROM i_like_member WHERE M_number = #{myNum}
+      </select> 
+ 
+      <select id="youpage" parameterType="map" resultType="Member">
+         SELECT M_number, C_number, M_like FROM i_like_member WHERE Y_number = #{myNum}
+      </select> 
+      
+      <select id="mlikelist" parameterType="map" resultType="Member">
+          select *
+          from i_like_member
+          where  m_number=#{myNum} or y_number=#{myNum}
+      </select>
+      
+      
+         <!-- <select id="detail" parameterType="map" resultType="member">
+         select m.y_number,m.m_number, m.c_number, c.c_subject
+        from chat c , i_like_member m
+       where c.C_NUMBER = #{num}
+         </select>  -->
+         
+</mapper>

@@ -1,0 +1,23 @@
+#/src/messages.txt =>> messages.properties
+#properties는 한글이 깨져서 txt파일에 쓴 후 properties파일에 복붙한다.
+error.update.sns=본인만 수정이 가능합니다.
+error.input.user=입력정보에 문제가 있습니다.
+error.required.userId=유저ID를 입력해 주세요
+error.required.password=패스워드를 입력해 주세요
+error.required.userName=이름을 입력해 주세요
+error.required.postCode=우편번호를 입력해 주세요
+error.required.address=주소를 입력해 주세요
+error.required.phoneNo=전화번호를 입력해 주세요
+error.required.email=EMAIL을 입력해 주세요
+error.required.sns_subject=제목을 입력해 주세요
+error.required.sns_content=내용을 입력해 주세요
+typeMismatch.birthDay=생년월일은 YYYY-MM-DD 형식으로 입력해 주세요
+#아이디 중복체크
+error.duplicate.user=이미 존재하는 회원 아이디 입니다.
+error.login.id=로그인에 실패했습니다.
+error.input.login=로그인 입력시 오류발생
+itemMenu.title=상품목록보기
+itemDetail.title=상품상세보기
+itemAdd.title=상품 등록
+itemEdit.title=상품 수정
+error.board.password=게시물 비밀번호가 틀립니다.

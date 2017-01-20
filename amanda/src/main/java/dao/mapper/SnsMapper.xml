@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="dao.mapper.SnsMapper">
+	<select id="list" parameterType="map" resultType="Sns">
+		select M_NUMBER, SNS_NO, SNS_SUBJECT, SNS_PICTURE fileUrl, SNS_CONTENT, SNS_DATE from sns where m_number = #{m_number} order by SNS_DATE desc
+	</select>
+	<select id = "detail" parameterType="map" resultType="Sns">
+		select M_NUMBER, SNS_NO, SNS_SUBJECT, SNS_PICTURE fileUrl, SNS_CONTENT, SNS_DATE from sns where m_number=#{m_number} and sns_no=#{sns_no}
+	</select>
+	<select id = "delete" parameterType="map">
+		delete from sns where sns_no = #{sns_no} and m_number = #{m_number}
+	</select>
+</mapper>

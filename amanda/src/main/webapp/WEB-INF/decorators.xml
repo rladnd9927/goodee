@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding= "euc-kr"?>
+
+<decorators defaultdir="/decorator">
+	<decorator name = "main" page="decorator.jsp">
+		<pattern>*.do</pattern>
+	</decorator>
+<!-- 	<decorator name = "main" page="decorator2.jsp">
+		<pattern>*.bod</pattern>
+	</decorator>  이런식으로 여러개의 decorator를 쓸 수 있다-->
+	<excludes><!-- 아래 패턴에 해당하는 url이 올경우, sitemesh에서 제외 시키도록 한다. -->
+		<pattern>*/snsdetail.*</pattern>
+	</excludes>
+</decorators>

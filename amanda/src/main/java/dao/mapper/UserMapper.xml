@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="dao.mapper.UserMapper">
+   <select id="getUser" parameterType="map" resultType="User">
+      select * from member
+      <where>
+         <if test="email != null">m_email=#{email}</if>
+         <if test="password != null">and m_password=#{password}</if>
+      </where>
+      <!-- order by dbms_random.random -->
+   </select>
+
+    <select id="userlist" parameterType="map" resultType="User">
+      SELECT * FROM member
+   </select>
+   
+   <select id="likelist" parameterType="map" resultType="User">
+      INSERT INTO i_like_member(M_number, Y_number, C_NUMBER, SER) VALUES (#{myNum}, #{userNum}, #{c_number}, 1)
+   </select>
+   
+   <select id="likelist2" parameterType="map" resultType="User">
+      DELETE FROM i_like_member WHERE M_number = #{myNum} AND Y_number = #{userNum}
+   </select>
+   
+   <select id="likelist3" parameterType="map" resultType="User">
+      UPDATE i_like_member SET M_LIKE = 1 WHERE Y_number=#{myNum} and M_number=#{userNum}
+   </select>
+   
+   <select id="nolist" parameterType="map" resultType="User">
+      DELETE FROM i_like_member WHERE Y_number = #{myNum} AND M_number = #{userNum}
+   </select>
+   
+   <select id="ser" parameterType="map" resultType="String">
+      SELECT ser FROM I_Like_Member where M_number=#{myNum} and Y_number=#{userNum}
+   </select>  
+   
+   <select id="aer" parameterType="map" resultType="String">
+      SELECT ser FROM I_Like_Member where Y_number=#{myNum} and M_number=#{userNum}
+   </select>  
+   
+   <select id="cer" parameterType="map" resultType="String">
+     select m_like from i_like_member where Y_number=#{myNum} and M_number=#{userNum}
+   </select>
+   
+   <select id="m_like" parameterType="map" resultType="int">
+     select c_number from i_like_member where Y_number=#{myNum} and M_number=#{userNum}
+   </select>
+   
+   <select id="search1" parameterType="map" resultType="int">
+      SELECT C_number FROM I_Like_Member where m_number=#{myNum} and y_number=#{userNum}
+   </select>  
+   
+   <select id="search2" parameterType="map" resultType="int">
+      SELECT C_number FROM I_Like_Member where y_number=#{myNum} and m_number=#{userNum}
+   </select>  
+   
+   <select id="list" parameterType="map" resultType="User" >
+        select * from member
+           <if test="column !=null and find != null">
+              where ${column} like '%${find}%'
+           </if>
+        order by dbms_random.random
+   </select> 
+   
+   <select id = "profilelist" parameterType="map" resultType="Integer">
+         select m_bodytype, m_bloodtype, m_character from member_profile
+         <if test="bodytype !=null or bloodtype !=null or character !=null">
+            where m_bodytype = ${m_bodytype} or m_bloodtype = ${m_bloodtype} or m_character = ${m_character} 
+         </if>
+   </select> 
+   <select id="getUserProfile2" parameterType="map" resultType="UserProfile">
+         select * from member_profile
+   </select>
+   <select id="duplicateUser" parameterType="map" resultType="SemiUser">
+      select s_email from semi_member where s_email=#{UserId}
+
+   </select>
+</mapper>

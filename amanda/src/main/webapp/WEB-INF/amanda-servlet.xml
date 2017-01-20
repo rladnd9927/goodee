@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation=
+       "http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context.xsd">
+<!-- 어노테이션 사용설정  -->
+<mvc:annotation-driven/>
+<!-- url과 Controller를 매핑 -->
+<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+</bean>
+<!-- 객체생성 영역 설정 -->
+<context:component-scan base-package="controller,dao,logic"/>
+<!-- 뷰 결정자 선택 -->
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+   <property name="viewClass">
+      <value>org.springframework.web.servlet.view.JstlView</value>
+   </property>
+   <property name="prefix">
+      <value>/WEB-INF/jsp/</value>
+   </property>
+   <property name="suffix">
+      <value>.jsp</value>
+   </property>
+</bean>
+<!-- message 사용하기 -->
+<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+   <property name="basenames">
+      <list><value>messages</value></list>
+   </property>
+</bean>
+<!-- 파일업로드 관련된 설정 -->
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+   p:maxUploadSize="104857600" p:maxInMemorySize="104857600"/>
+<!-- 예외 발생시 호출되는 뷰 설정 -->
+<bean id="exceptionHandler" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+   <property name="exceptionMappings">
+       <value>
+         exception.LoginRequiredException=dummyLogin
+         exception.AdminRequiredException=adminLogin
+         exception.PasswordFailException=passwordFail
+         exception.MailEmptyException=mailEmpty
+         exception.SimsaException=simsa
+      </value>
+      </property>
+</bean>
+</beans>
